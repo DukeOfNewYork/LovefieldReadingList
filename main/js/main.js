@@ -1,3 +1,4 @@
+this.readingListScheme = {};
 var RRrawJSON = [
     {
         "id": 1,
@@ -33,4 +34,4 @@ var BLrawJSON = [
     }
 ];
 
-console.log('3');
+console.log('4');
