@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logging Reading using Lovefield</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="display"></div>
+<select id="mySelect">
+</select>
+
+</body>
+<script>$(function () {
+    $.when(
+        $.getScript('https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'),
+        $.getScript('../js/main.js'),
+        $.getScript('../js/dbscheme.js'),
+        $.getScript('../js/dbretrieval.js'),
+        $.getScript('../js/dataupload.js')
+    ).then(function () {
+        createSchemes();
+        connect(retreieve);
+
+
+        // var param = {};
+        // param.tab = 'bookTable';
+
+            // connect(param);
+            var _select = $('<select>');
+            console.log('final');
+        }
+    )
+})
+
+</script>
+</html>

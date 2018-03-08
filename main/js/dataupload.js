@@ -1,23 +1,24 @@
-function connect(func, param) {
+function connect(action, param) {
     this.readingListScheme.schemaBuilder.connect().then(function (db) {
         this.readingListScheme.readingListDataBase = db;
         this.readingListScheme.readingRecordsTable = db.getSchema().table('readingRecordsTable');
         this.readingListScheme.bookTable = db.getSchema().table('Book');
-        if(param.tab === 'bookTable'){
-            param.tab = this.readingListScheme.bookTable
+        if (param.tab === 'bookTable'){
+            param.tab = this.readingListScheme.bookTable;
         }
-        func(param);
-    })
+        if (action) {
+            action(param);
+        }
+    });
 }
 
 function UploadData(param) {
 
-    console.log(param);
     var rows = param.JSONData.map(function (obj) {
         console.log(obj);
         return param.tab.createRow(obj);
     });
-
+    console.log(param);
     var query = this.readingListScheme.readingListDataBase.insertOrReplace().into(param.tab).values(rows);
 
     var tx = this.readingListScheme.readingListDataBase.createTransaction();

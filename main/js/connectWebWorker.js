@@ -1,4 +1,22 @@
+createSchemes();
+connect();
+
+function connect() {
+    this.readingListScheme.schemaBuilder.connect().then(function (db) {
+
+
+        this.readingListScheme.readingListDataBase = db;
+        this.readingListScheme.readingRecordsTable = db.getSchema().table('readingRecordsTable');
+        this.readingListScheme.bookTable = db.getSchema().table('Book');
+        // if(param.tab === 'bookTable'){
+        //     param.tab = this.readingListScheme.bookTable
+        // }
+        // var testo = func(param);
+    })
+}
+
 function createSchemes() {
+
     this.readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 2);
 
     this.readingListScheme.schemaBuilder.createTable('readingRecordsTable').
