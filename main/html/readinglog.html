@@ -7,8 +7,17 @@
 </head>
 <body>
 <div id="display"></div>
-<select id="mySelect">
-</select>
+<div id="inputs">
+    <ul>
+        <li>
+            Title <select id="mySelect"></select>
+        </li>
+        <li>
+            Current Page <input type="number" value="1" id="currentPage" title="Number of Pages">
+        </li>
+    </ul>
+</div>
+<button id="submit">Submit</button>
 
 </body>
 <script>$(function () {
@@ -19,16 +28,16 @@
         $.getScript('../js/dbretrieval.js'),
         $.getScript('../js/dataupload.js')
     ).then(function () {
-        createSchemes();
-        connect(retreieve);
+            createSchemes();
+            connect(retreieve, {});
+            $("#submit").click(function () {
 
-
-        // var param = {};
-        // param.tab = 'bookTable';
-
-            // connect(param);
-            var _select = $('<select>');
-            console.log('final');
+                var bookInput = [{
+                    'bookTitle': $("#mySelect").val(),
+                    'currentPage': $("#currentPage").val()
+                }];
+                UploadData({'JSONData': bookInput, 'tab': 'bookTable'});
+            });
         }
     )
 })

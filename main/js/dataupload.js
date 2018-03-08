@@ -1,3 +1,4 @@
+// connects to the database and allows a function to be operated while the connection is open
 function connect(action, param) {
     this.readingListScheme.schemaBuilder.connect().then(function (db) {
         this.readingListScheme.readingListDataBase = db;
@@ -5,6 +6,8 @@ function connect(action, param) {
         this.readingListScheme.bookTable = db.getSchema().table('Book');
         if (param.tab === 'bookTable'){
             param.tab = this.readingListScheme.bookTable;
+        } else if (param.tab === 'readingRecordsTable'){
+            param.tab = this.readingListScheme.readingRecordsTable;
         }
         if (action) {
             action(param);
@@ -12,6 +15,7 @@ function connect(action, param) {
     });
 }
 
+//uploads data to the database, with param.tab for the table
 function UploadData(param) {
 
     var rows = param.JSONData.map(function (obj) {
