@@ -33,10 +33,11 @@
             $("#submit").click(function () {
 
                 var bookInput = [{
+                    'id':5,
                     'bookTitle': $("#mySelect").val(),
                     'currentPage': $("#currentPage").val()
                 }];
-                UploadData({'JSONData': bookInput, 'tab': 'bookTable'});
+                UploadData({'JSONData': bookInput, 'tab': readingListScheme.readingRecordsTable});
             });
         }
     )

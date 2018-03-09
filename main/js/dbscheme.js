@@ -1,7 +1,7 @@
 function createSchemes() {
-    this.readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 2);
+    readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 2);
 
-    this.readingListScheme.schemaBuilder.createTable('readingRecordsTable').
+    readingListScheme.schemaBuilder.createTable('readingRecordsTable').
     addColumn('id', lf.Type.INTEGER).
     addColumn('bookTitle', lf.Type.STRING).
     addColumn('currentPage', lf.Type.INTEGER).
@@ -12,7 +12,7 @@ function createSchemes() {
     }).
     addPrimaryKey(['id']);
 
-    this.readingListScheme.schemaBuilder.createTable('Book').
+    readingListScheme.schemaBuilder.createTable('Book').
     addColumn('title', lf.Type.STRING).
     addColumn('author', lf.Type.STRING).
     addColumn('description', lf.Type.STRING).
