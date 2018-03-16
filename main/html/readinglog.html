@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Logging Reading using Lovefield</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'></script>
+    <script src='../js/main.js'></script>
+    <script src='../js/dbscheme.js'></script>
+    <script src='../js/dbretrieval.js'></script>
+    <script src='../js/dataupload.js'></script>
 </head>
 <body>
 <div id="display"></div>
@@ -22,30 +27,20 @@
 
 </body>
 <script>$(function () {
-    $.when(
-        $.getScript('https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'),
-        $.getScript('../js/main.js'),
-        $.getScript('../js/dbscheme.js'),
-        $.getScript('../js/dbretrieval.js'),
-        $.getScript('../js/dataupload.js')
-    ).then(function () {
-        createSchemes();
-        connect();
-    }).then(function () {
+    connect()
+        .then(function () {
             retreieveBooks();
             getReadingList();
             $("#submit").click(function () {
-                var bookInput = {
+                let bookInput = {
                     'id': readingListScheme.numberOfReadingLogs + 1,
                     'bookTitle': $("#mySelect").val(),
                     'currentPage': $("#currentPage").val()
                 };
                 UploadData({'JSONData': [bookInput], 'tab': 'readingRecordsTable'});
-
                 retreieveReading();
             });
-        }
-    )
+        })
 })
 
 </script>

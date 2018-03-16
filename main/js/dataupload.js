@@ -1,11 +1,14 @@
 // connects to the database and allows a function to be operated while the connection is open
 let connect = function connect() {
-    readingListScheme.schemaBuilder.connect().then(function (db) {
-        readingListScheme.readingListDataBase = db;
-        readingListScheme.readingRecordsTable = db.getSchema().table('readingRecordsTable');
-        readingListScheme.bookTable = db.getSchema().table('Book');
-        readingListScheme.connect = true;
-        return console.log(readingListScheme.connect);
+    createSchemes();
+    return new Promise((resolve, reject) => {
+        readingListScheme.schemaBuilder.connect().then(function (db) {
+            readingListScheme.readingListDataBase = db;
+            readingListScheme.readingRecordsTable = db.getSchema().table('readingRecordsTable');
+            readingListScheme.bookTable = db.getSchema().table('Book');
+            readingListScheme.connect = true;
+            return resolve(readingListScheme.connect); // Yay! Everything went well!
+        })
     });
 };
 
@@ -13,9 +16,9 @@ let connect = function connect() {
 //param.JSONData needs to be placed inside an array so that it can use map
 function UploadData(param) {
 
-    if (param.tab === 'bookTable'){
+    if (param.tab === 'bookTable') {
         param.tab = readingListScheme.bookTable;
-    } else if (param.tab === 'readingRecordsTable'){
+    } else if (param.tab === 'readingRecordsTable') {
         param.tab = readingListScheme.readingRecordsTable;
     }
 
