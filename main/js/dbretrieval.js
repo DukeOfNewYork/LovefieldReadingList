@@ -21,8 +21,16 @@ function retreieveBooks() {
     retreieveReading()
 }
 
-function retreieveReading() {
+function getReadingList() {
+    var selectQueryBuilder = readingListScheme.readingListDataBase.select().from(readingListScheme.readingRecordsTable).exec().then(function (rows) {
+        // readingListScheme.numberOfReadingLogs = rows.length;
+        for (var key in rows){
+            console.log(key);
+        }
+    });
+}
 
+function retreieveReading() {
     var selectQueryBuilder = readingListScheme.readingListDataBase.select().from(readingListScheme.readingRecordsTable).exec().then(function (rows) {
         readingListScheme.numberOfReadingLogs = rows.length;
         var history = $('<table></table>').addClass('history');
@@ -32,5 +40,5 @@ function retreieveReading() {
         }
         $('#history').html(history);
     });
-    console.log(selectQueryBuilder);
+    // console.log(selectQueryBuilder);
 }

@@ -29,16 +29,19 @@
         $.getScript('../js/dbretrieval.js'),
         $.getScript('../js/dataupload.js')
     ).then(function () {
-            createSchemes();
-            connect(retreieveBooks, {});
+        createSchemes();
+        connect();
+    }).then(function () {
+            retreieveBooks();
+            getReadingList();
             $("#submit").click(function () {
-
-                var bookInput = [{
+                var bookInput = {
                     'id': readingListScheme.numberOfReadingLogs + 1,
                     'bookTitle': $("#mySelect").val(),
                     'currentPage': $("#currentPage").val()
-                }];
-                UploadData({'JSONData': bookInput, 'tab': readingListScheme.readingRecordsTable});
+                };
+                UploadData({'JSONData': [bookInput], 'tab': 'readingRecordsTable'});
+
                 retreieveReading();
             });
         }

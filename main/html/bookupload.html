@@ -35,6 +35,7 @@
         $.getScript('../js/dataupload.js')
     ).then(function () {
             createSchemes();
+            connect();
             $("#submit").click(function () {
 
                 var bookInput = [{
@@ -43,7 +44,7 @@
                     'description': $("#description").val(),
                     'length': $("#length").val()
                 }];
-                connect(UploadData,{'JSONData':bookInput,'tab':'bookTable'});
+                UploadData({'JSONData':bookInput,'tab':'bookTable'});
             });
         }
     )
