@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Logging Reading using Lovefield</title>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'></script>
     <script src='../js/main.js'></script>
     <script src='../js/dbscheme.js'></script>
@@ -20,6 +21,9 @@
         <li>
             Current Page <input type="number" value="1" id="currentPage" title="Number of Pages">
         </li>
+        <li>
+            Date: <input type="text" id="datepicker">
+        </li>
     </ul>
 </div>
 <button id="submit">Submit</button>
@@ -27,6 +31,7 @@
 
 </body>
 <script>$(function () {
+    $( "#datepicker" ).datepicker();
     connect()
         .then(function () {
             retreieveBooks();
@@ -37,7 +42,7 @@
                     'id': readingListScheme.numberOfReadingLogs,
                     'bookTitle': $("#mySelect").val(),
                     'currentPage': $("#currentPage").val(),
-                    'dateRead': new Date()
+                    'dateRead': $("#datepicker").datepicker('getDate')
                 };
                 console.log(bookInput);
                 UploadData({'JSONData': [bookInput], 'tab': 'readingRecordsTable'});
