@@ -1,10 +1,11 @@
 function createSchemes() {
-    readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 2);
+    readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 3);
 
     readingListScheme.schemaBuilder.createTable('readingRecordsTable').
     addColumn('id', lf.Type.INTEGER).
     addColumn('bookTitle', lf.Type.STRING).
     addColumn('currentPage', lf.Type.INTEGER).
+    addColumn('dateRead', lf.Type.DATE_TIME).
     addForeignKey('fk_Book', {
         local: 'bookTitle',
         ref: 'Book.title',

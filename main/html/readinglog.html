@@ -32,11 +32,14 @@
             retreieveBooks();
             getReadingList();
             $("#submit").click(function () {
+                readingListScheme.numberOfReadingLogs += 1;
                 let bookInput = {
-                    'id': readingListScheme.numberOfReadingLogs + 1,
+                    'id': readingListScheme.numberOfReadingLogs,
                     'bookTitle': $("#mySelect").val(),
-                    'currentPage': $("#currentPage").val()
+                    'currentPage': $("#currentPage").val(),
+                    'dateRead': new Date()
                 };
+                console.log(bookInput);
                 UploadData({'JSONData': [bookInput], 'tab': 'readingRecordsTable'});
                 retreieveReading();
             });

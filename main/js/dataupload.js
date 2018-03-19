@@ -14,19 +14,14 @@ let connect = function connect() {
 
 //uploads data to the database, with param.tab for the table
 //param.JSONData needs to be placed inside an array so that it can use map
-function UploadData(param) {
+let UploadData = function UploadData(param) {
+    param.tab = readingListScheme[param.tab];
 
-    if (param.tab === 'bookTable') {
-        param.tab = readingListScheme.bookTable;
-    } else if (param.tab === 'readingRecordsTable') {
-        param.tab = readingListScheme.readingRecordsTable;
-    }
-
-    var rows = param.JSONData.map(function (obj) {
+    let rows = param.JSONData.map(function (obj) {
         return param.tab.createRow(obj);
     });
 
-    var query = readingListScheme.readingListDataBase.insertOrReplace().into(param.tab).values(rows);
-    var tx = readingListScheme.readingListDataBase.createTransaction();
+    let query = readingListScheme.readingListDataBase.insertOrReplace().into(param.tab).values(rows);
+    let tx = readingListScheme.readingListDataBase.createTransaction();
     return tx.exec([query]);
-}
+};
