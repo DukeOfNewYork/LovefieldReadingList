@@ -38,9 +38,15 @@ let getReadingList = function getReadingList() {
 let retreieveReading = function retreieveReading() {
     var selectQueryBuilder = readingListScheme.readingListDataBase.select().from(readingListScheme.readingRecordsTable).exec().then(function (rows) {
         readingListScheme.numberOfReadingLogs = rows.length;
-        var history = $('<table></table>').addClass('history');
+        let history = $('<table></table>').addClass('history');
+        let currentBook = "";
+        let row;
         for (i = 0; i < rows.length; i++) {
-            var row = $('<tr></tr>').text('Book: ' + rows[i].bookTitle + ' page: ' + rows[i].currentPage + ' Date: ' + rows[i].dateRead);
+            if (currentBook !== rows[i].bookTitle){
+                currentBook = rows[i].bookTitle;
+                row = $('<tr></tr>').text('Book: ' + currentBook);
+            }
+            row.append( $('<tr></tr>').text(' page: ' + rows[i].currentPage + ' Date: ' + rows[i].dateRead));
             history.append(row);
         }
         $('#history').html(history);

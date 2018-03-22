@@ -36,19 +36,19 @@
         .then(function () {
             retreieveBooks();
             getReadingList();
-            $("#submit").click(function () {
-                readingListScheme.numberOfReadingLogs += 1;
-                let bookInput = {
-                    'id': readingListScheme.numberOfReadingLogs,
-                    'bookTitle': $("#mySelect").val(),
-                    'currentPage': $("#currentPage").val(),
-                    'dateRead': $("#datepicker").datepicker('getDate')
-                };
-                console.log(bookInput);
-                UploadData({'JSONData': [bookInput], 'tab': 'readingRecordsTable'});
-                retreieveReading();
-            });
-        })
+        });
+    $("#submit").click(function () {
+        readingListScheme.numberOfReadingLogs += 1;
+        let bookInput = {
+            'id': readingListScheme.numberOfReadingLogs,
+            'bookTitle': $("#mySelect").val(),
+            'currentPage': $("#currentPage").val(),
+            'dateRead': $("#datepicker").datepicker('getDate')
+        };
+        console.log(bookInput);
+        UploadData({'JSONData': [bookInput], 'tab': 'readingRecordsTable'});
+        retreieveReading();
+    });
 })
 
 </script>
