@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logging Reading using Lovefield</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'></script>
+    <script src='../js/main.js'></script>
+    <script src='../js/dbscheme.js'></script>
+    <script src='../js/dbretrieval.js'></script>
+    <script src='../js/dataupload.js'></script>
+    <script src='../js/readinglog.js'></script>
+</head>
+<body>
+<div id="display"></div>
+<div id="history"></div>
+
+</body>
+<script>$(function () {
+    connect()
+        .then(function () {
+            retreieveBooks();
+            getReadingList();
+            displayReadingLogs();
+        });
+})
+
+</script>
+</html>

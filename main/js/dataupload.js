@@ -7,7 +7,7 @@ let connect = function connect() {
             readingListScheme.readingRecordsTable = db.getSchema().table('readingRecordsTable');
             readingListScheme.bookTable = db.getSchema().table('Book');
             readingListScheme.connect = true;
-            return resolve(readingListScheme.connect); // Yay! Everything went well!
+            return resolve(readingListScheme.connect);
         })
     });
 };

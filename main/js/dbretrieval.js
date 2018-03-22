@@ -18,16 +18,15 @@ let retreieveBooks = function retreieveBooks() {
         readingListScheme.books = returnObj;
         $('#mySelect').append(_select.html());
     });
-    retreieveReading()
 };
 
 //Finds the biggest number in all of the reading log ID's to make sure nothing is overwritten
 let getReadingList = function getReadingList() {
     var selectQueryBuilder = readingListScheme.readingListDataBase.select().from(readingListScheme.readingRecordsTable).exec().then(function (rows) {
         let highestID = 0;
-        for (let Key in rows){
+        for (let Key in rows) {
             let keyID = rows[Key].id;
-            if (keyID > highestID){
+            if (keyID > highestID) {
                 highestID = keyID;
             }
         }
@@ -35,21 +34,13 @@ let getReadingList = function getReadingList() {
     });
 };
 
-let retreieveReading = function retreieveReading() {
-    var selectQueryBuilder = readingListScheme.readingListDataBase.select().from(readingListScheme.readingRecordsTable).exec().then(function (rows) {
-        readingListScheme.numberOfReadingLogs = rows.length;
-        let history = $('<table></table>').addClass('history');
-        let currentBook = "";
-        let row;
-        for (i = 0; i < rows.length; i++) {
-            if (currentBook !== rows[i].bookTitle){
-                currentBook = rows[i].bookTitle;
-                row = $('<tr></tr>').text('Book: ' + currentBook);
+let retreieveReadingLogs = function retreieveReadingLogs() {
+    return new Promise((resolve, reject) => {
+        let selectQueryBuilder = readingListScheme.readingListDataBase.select().from(readingListScheme.readingRecordsTable).exec().then(function (rows) {
+            {
+                return resolve(rows);
             }
-            row.append( $('<tr></tr>').text(' page: ' + rows[i].currentPage + ' Date: ' + rows[i].dateRead));
-            history.append(row);
-        }
-        $('#history').html(history);
-    });
-    // console.log(selectQueryBuilder);
+        });
+        // console.log(selectQueryBuilder);
+    })
 };

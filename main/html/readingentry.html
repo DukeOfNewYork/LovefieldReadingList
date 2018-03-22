@@ -10,6 +10,7 @@
     <script src='../js/dbscheme.js'></script>
     <script src='../js/dbretrieval.js'></script>
     <script src='../js/dataupload.js'></script>
+    <script src='../js/readinglog.js'></script>
 </head>
 <body>
 <div id="display"></div>
@@ -36,6 +37,7 @@
         .then(function () {
             retreieveBooks();
             getReadingList();
+            readingLogCurrentPage();
         });
     $("#submit").click(function () {
         readingListScheme.numberOfReadingLogs += 1;
@@ -47,7 +49,7 @@
         };
         console.log(bookInput);
         UploadData({'JSONData': [bookInput], 'tab': 'readingRecordsTable'});
-        retreieveReading();
+        readingLogCurrentPage();
     });
 })
 
