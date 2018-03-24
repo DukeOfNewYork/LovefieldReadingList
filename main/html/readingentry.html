@@ -40,11 +40,11 @@
             readingLogCurrentPage();
         });
     $("#submit").click(function () {
-        readingListScheme.numberOfReadingLogs += 1;
+        _readingListScheme.numberOfReadingLogs += 1;
         let bookInput = {
-            'id': readingListScheme.numberOfReadingLogs,
+            'id': _readingListScheme.numberOfReadingLogs,
             'bookTitle': $("#mySelect").val(),
-            'currentPage': $("#currentPage").val(),
+            'currentPage': parseInt( $("#currentPage").val()),
             'dateRead': $("#datepicker").datepicker('getDate')
         };
         console.log(bookInput);

@@ -2,12 +2,12 @@
 let connect = function connect() {
     createSchemes();
     return new Promise((resolve, reject) => {
-        readingListScheme.schemaBuilder.connect().then(function (db) {
-            readingListScheme.readingListDataBase = db;
-            readingListScheme.readingRecordsTable = db.getSchema().table('readingRecordsTable');
-            readingListScheme.bookTable = db.getSchema().table('Book');
-            readingListScheme.connect = true;
-            return resolve(readingListScheme.connect);
+        _readingListScheme.schemaBuilder.connect().then(function (db) {
+            _readingListScheme.readingListDataBase = db;
+            _readingListScheme.readingRecordsTable = db.getSchema().table('readingRecordsTable');
+            _readingListScheme.bookTable = db.getSchema().table('Book');
+            _readingListScheme.connect = true;
+            return resolve(_readingListScheme.connect);
         })
     });
 };
@@ -15,13 +15,13 @@ let connect = function connect() {
 //uploads data to the database, with param.tab for the table
 //param.JSONData needs to be placed inside an array so that it can use map
 let UploadData = function UploadData(param) {
-    param.tab = readingListScheme[param.tab];
+    param.tab = _readingListScheme[param.tab];
 
     let rows = param.JSONData.map(function (obj) {
         return param.tab.createRow(obj);
     });
 
-    let query = readingListScheme.readingListDataBase.insertOrReplace().into(param.tab).values(rows);
-    let tx = readingListScheme.readingListDataBase.createTransaction();
+    let query = _readingListScheme.readingListDataBase.insertOrReplace().into(param.tab).values(rows);
+    let tx = _readingListScheme.readingListDataBase.createTransaction();
     return tx.exec([query]);
 };
