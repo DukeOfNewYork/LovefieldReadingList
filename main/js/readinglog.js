@@ -23,7 +23,7 @@ let readingLogCurrentPage = function readingLogCurrentPage() {
         for (let key in bookInformation) {
             let obj = bookInformation[key];
             for (let prop in obj) {
-                row = $('<tr></tr>').text(prop + ': ' + obj[prop]);
+                row = $('<tr></tr>').text(`${prop}: ${obj[prop]}`);
                 history.append(row);
             }
         }
@@ -35,16 +35,14 @@ let readingLogCurrentPage = function readingLogCurrentPage() {
 let displayReadingLogs = function displayReadingLogs() {
     retreieveReadingLogs().then(function (rows) {
         let history = $('<table></table>').addClass('history'),
-            bookInformation = {},
             currentBook = "",
             row;
         for (let i = 0; i < _readingListScheme.numberOfReadingLogs; i++) {
             if (currentBook !== rows[i].bookTitle) {
                 currentBook = rows[i].bookTitle;
-                bookInformation[currentBook] = {'title': currentBook};
-                row = $('<tr></tr>').text('Book: ' + currentBook);
+                row = $('<tr></tr>').text(`Book:  ${currentBook}`);
             }
-            row.append($('<tr></tr>').text(' page: ' + rows[i].currentPage + ' Date: ' + rows[i].dateRead.toDateString()));
+            row.append($('<tr></tr>').text(` page: ${rows[i].currentPage} Date: ${rows[i].dateRead.toDateString()}`));
             history.append(row);
 
         }
