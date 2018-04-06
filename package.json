@@ -1,0 +1,19 @@
+{
+  "name": "lovefieldreadinglist",
+  "version": "1.0.0",
+  "description": "A reading list app that uses Lovefield as a local relational database",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DukeOfNewYork/LovefieldReadingList.git"
+  },
+  "author": "Simon Gray",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DukeOfNewYork/LovefieldReadingList/issues"
+  },
+  "homepage": "https://github.com/DukeOfNewYork/LovefieldReadingList#readme"
+}
