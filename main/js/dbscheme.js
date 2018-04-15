@@ -1,5 +1,5 @@
 function createSchemes() {
-    _readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 3);
+    _readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 4);
 
     _readingListScheme.schemaBuilder.createTable('readingRecordsTable').
     addColumn('id', lf.Type.INTEGER).
@@ -20,3 +20,16 @@ function createSchemes() {
     addColumn('length', lf.Type.INTEGER).
     addPrimaryKey(['title']);
 }
+
+let connect = function connect() {
+    createSchemes();
+    return new Promise((resolve, reject) => {
+        _readingListScheme.schemaBuilder.connect().then(function (db) {
+            _readingListScheme.readingListDataBase = db;
+            _readingListScheme.readingRecordsTable = db.getSchema().table('readingRecordsTable');
+            _readingListScheme.bookTable = db.getSchema().table('Book');
+            _readingListScheme.connect = true;
+            return resolve(_readingListScheme.connect); // Yay! Everything went well!
+        })
+    });
+};
