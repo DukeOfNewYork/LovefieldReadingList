@@ -19,34 +19,42 @@
 <canvas id="myChart"></canvas>
 
 </body>
-<script>$(function () {
-    connect()
-        .then(function () {
-            retreieveBooks();
-            getReadingList();
-            displayReadingLogs();
-        });
+<script>
+    $(function () {
+        let graphLabels = [],
+            graphData = [];
+        connect()
+            .then(function () {
+                retreieveBooks();
+                getReadingList();
+                displayReadingLogs().then(function (htmlData) {
+                    $('#history').html(htmlData.history);
+                    graphLabels = htmlData.titles;
+                    graphData = htmlData.reading;
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
+                    let ctx = document.getElementById('myChart').getContext('2d');
+                    let chart = new Chart(ctx, {
 
-        // The data for our dataset
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                label: "My First dataset",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        },
+                        // The type of chart we want to create
+                        type: 'bar',
 
-        // Configuration options go here
-        options: {}
+                        // The data for our dataset
+                        data: {
+                            labels: graphLabels,
+                            datasets: [{
+                                label: "Current Progress",
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: graphData,
+                            }]
+                        },
+
+                        // Configuration options go here
+                        options: {}
+                    });
+                })
+            })
     });
-})
 
 </script>
 </html>
