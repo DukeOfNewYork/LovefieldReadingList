@@ -212,38 +212,24 @@ h2 {
   -webkit-transition-duration: .6s;
   transition-duration: .6s;
 }
+
 .arrow-up {
   -webkit-transition-duration: .4s;
   transition-duration: .4s;
 }
 
 @media (max-width: 800px) {
-  body{
-    h1 {
-      font-size: 4em;
-    }
-    h2 {
-      font-size: 3em;
-    }
-    input{
-      font-size: 2em;
-    }
-    select {
-      font-size: 2em;
-    }
-    font-size: 2em;
-  }
   .center {
     width: auto;
   }
   .sidebar {
     z-index: -1;
   }
-  .mainbar{
+  .mainbar {
     padding: 0;
     transition-duration: .5s;
   }
-  .row-container{
+  .row-container {
     margin: auto;
     padding: 0 0 2em 0;
   }
@@ -251,8 +237,9 @@ h2 {
     width: auto;
   }
 }
+
 @media (min-width: 801px) {
-  .mainbar{
+  .mainbar {
     transition-duration: .5s;
   }
 }
