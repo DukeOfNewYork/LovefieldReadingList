@@ -62,7 +62,9 @@ let displayReadingLogs = function displayReadingLogs() {
 
 
 let bookStats = function bookStats(rows) {
-    console.log(rows);
+    if (rows.length === 0){
+        return
+    }
     let currentBook = rows[0].bookTitle,
         bookInformation = {},
         currentPage = 0;
