@@ -7,5 +7,5 @@ On small screens
 On big screens
 ![alt text][desktop]
 
-[desktop]: https://github.com/DukeOfNewYork/LovefieldReadingList/tree/AddingGraphs/main/desktop_screenshot.png "Desktop Screen Shot"
-[mobile]: https://github.com/DukeOfNewYork/LovefieldReadingList/tree/AddingGraphs/main/mobile_screenshot.png "Logo Title Text 2"
+[desktop]: https://github.com/DukeOfNewYork/LovefieldReadingList/blob/AddingGraphs/ReadmeMedia/desktop_screenshot.png "Desktop Screen Shot"
+[mobile]: https://github.com/DukeOfNewYork/LovefieldReadingList/blob/AddingGraphs/ReadmeMedia/mobile_screenshot.png "Logo Title Text 2"
