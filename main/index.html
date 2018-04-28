@@ -1,5 +1,6 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <meta charset="utf-8"/>
     <title>Lovefield Reading Log</title>
@@ -48,11 +49,11 @@
         </div>
         <div class="rows">
             <div class="row row-dark" id="add_a_book">
-                <div class="row-container">
+                <div class="row-container" >
                     <h2>
                         Add a Book
                     </h2>
-                    <div id="inputs">
+                    <div id="inputs" class="center">
                         <ul>
                             <li>
                                 Title <input type="text" value="Test" id="title" title="Book Title">
@@ -77,7 +78,7 @@
                     <h2>
                         Add a reading event
                     </h2>
-                    <div>
+                    <div class="center">
                         <ul>
                             <li>
                                 Title <select id="mySelect"></select>
@@ -91,7 +92,7 @@
                         </ul>
                     </div>
                     <button id="submit-reading">Submit</button>
-                    <div id="history-highlights"></div>
+                    <div id="history-highlights" class="center"></div>
                 </div>
             </div>
             <div class="row row-dark" id="entire_reading_history">
@@ -100,7 +101,7 @@
                         Entire Reading History
                     </h2>
 
-                    <div id="history-all"></div>
+                    <div id="history-all" class="center"></div>
                 </div>
             </div>
         </div>
