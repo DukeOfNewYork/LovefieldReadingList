@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+@import url("https://use.fontawesome.com/releases/v5.0.10/css/all.css");
+body {
+  height: 100%;
+  width: 100%;
+  color: #040F0F;
+  background: #2BA84A;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  padding: 0;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth; }
+  body ul {
+    list-style-type: none; }
+
+h1 {
+  font-size: 3em; }
+  h1 img {
+    height: 3em; }
+
+h2 {
+  font-size: 1.5em; }
+  h2 img {
+    height: 1.5em; }
+
+.center {
+  text-align: left;
+  margin: auto;
+  width: 50%; }
+
+.sidebar {
+  width: 15%;
+  height: 100%;
+  background: #FCFFFC;
+  position: fixed;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  z-index: 100; }
+  .sidebar #leftside-navigation ul, .sidebar #leftside-navigation ul ul {
+    padding: 0; }
+  .sidebar #leftside-navigation ul li {
+    list-style-type: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    .sidebar #leftside-navigation ul li a {
+      color: #040F0F;
+      text-decoration: none;
+      display: block;
+      padding: 2em;
+      font-size: 0.75em;
+      outline: 0;
+      -webkit-transition: all 200ms ease-in;
+      -moz-transition: all 200ms ease-in;
+      -o-transition: all 200ms ease-in;
+      -ms-transition: all 200ms ease-in;
+      transition: all 200ms ease-in; }
+      .sidebar #leftside-navigation ul li a:hover {
+        color: #248232; }
+      .sidebar #leftside-navigation ul li a span {
+        display: inline-block; }
+      .sidebar #leftside-navigation ul li a i {
+        width: 20px; }
+        .sidebar #leftside-navigation ul li a i .fa-angle-left, .sidebar #leftside-navigation ul li a i .fa-angle-right {
+          padding-top: 3px; }
+  .sidebar #leftside-navigation ul ul {
+    display: none; }
+    .sidebar #leftside-navigation ul ul li {
+      background: #2BA84A;
+      margin: 0;
+      border-bottom: none; }
+      .sidebar #leftside-navigation ul ul li a {
+        padding: 1em 0 1em 1em;
+        color: #040F0F; }
+
+.mainbar {
+  position: static;
+  padding: 0 0 0 15%;
+  text-align: center; }
+
+.grid-container {
+  display: grid; }
+  .grid-container > div {
+    background-color: #FCFFFC; }
+
+.rows {
+  background-color: #2BA84A; }
+
+.row {
+  margin-bottom: -1.5em;
+  height: 100%; }
+
+.row-dark {
+  background-color: #248232;
+  -webkit-clip-path: polygon(0 0%, 100% 4%, 100% 96%, 0% 100%);
+  clip-path: polygon(0 0%, 100% 4%, 100% 96%, 0% 100%);
+  padding: 3em 1em; }
+
+.row-light {
+  background-color: #2BA84A;
+  padding: 3em 1em; }
+
+.row-container {
+  overflow: auto;
+  margin: 1em 5em;
+  background-color: #FCFFFC;
+  border-radius: 1em 3em; }
+  .row-container h1 {
+    font-size: 2em;
+    padding: .5em; }
+  .row-container h2 {
+    font-size: 1.5em; }
+  .row-container p {
+    text-align: left;
+    padding: .5em; }
+  .row-container .right {
+    width: 20em;
+    float: right;
+    border-radius: 0 0 0 1em; }
+  .row-container .left {
+    height: 20em;
+    float: left;
+    border-radius: 0 0 1em 0; }
+
+.trailing-images img {
+  height: 2em; }
+
+.button {
+  float: right;
+  background-color: #040F0F;
+  color: #248232;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: .5em;
+  right: 0;
+  box-shadow: 0 .5em 1em .25em;
+  border-radius: 1em 0 0 0; }
+
+.arrow-down {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transition-duration: .6s;
+  transition-duration: .6s; }
+
+.arrow-up {
+  -webkit-transition-duration: .4s;
+  transition-duration: .4s; }
+
+@media (max-width: 800px) {
+  .center {
+    width: auto; }
+
+  .sidebar {
+    z-index: -1; }
+
+  .mainbar {
+    padding: 0;
+    transition-duration: .5s; }
+
+  .row-container {
+    margin: auto;
+    padding: 0 0 2em 0; }
+
+  .width {
+    width: auto; } }
+@media (min-width: 801px) {
+  .mainbar {
+    transition-duration: .5s; } }
+
+/*# sourceMappingURL=css.css.map */
