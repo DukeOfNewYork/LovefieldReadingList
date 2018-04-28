@@ -2,14 +2,104 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
-    <title>Logging books using Lovefield</title>
+    <title>Lovefield Reading Log</title>
+    <link rel='stylesheet' href='css/css.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <link rel='stylesheet prefetch'
+          href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
 
 </head>
 <body>
-<a href="./html/bookupload.html">Add a book to your collection</a>
-<a href="html/readingentry.html">Log your most recent reading experience</a>
-<a href="html/readinglogs.html">View entire reading history</a>
+<div class="grid-container">
+    <div class="menu">
+        <aside class="sidebar">
+            <div id="leftside-navigation" class="nano">
+                <ul class="nano-content">
+                    <li>
+                        <a href="https://github.com/DukeOfNewYork/LovefieldReadingList"><i
+                                class="fab fa-github"></i><span>GitHub Project Page</span></a>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:void(0);"><i class="fab fa-js-square"></i><span>JavaScript Projects</span>
+                            <i id="arrow" class="fas fa-arrow-right arrow-up"></i>
+                        </a>
+                        <ul>
+                            <li><a href="html/bookupload.html"><i class="fas fa-book"></i> Add a book to your collection</a>
+                            </li>
+                            <li><a href="html/readingentry.html"><i class="fas fa-pencil-alt"></i> Log your most recent
+                                reading experience</a>
+                            </li>
+                            <li><a href="html/readinglogs.html"><i class="fab fa-readme"></i> View entire reading
+                                history</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <div class="mainbar">
+        <div class="header" id="header">
+            <h1>Lovefield Reading List</h1>
+            <h2>
+            </h2>
+            <p class="subtext">Scroll down or use the nav bar to manage your reading logs</p>
+            <p class="subtext">&#8671;</p>
+        </div>
+        <div class="rows">
+            <div class="row row-dark">
+                <div class="row-container">
+                    <h2>
+                        Add a Book
+                    </h2>
+                    <div id="inputs">
+                        <ul>
+                            <li>
+                                Title <input type="text" value="Test" id="title" title="Book Title">
+                            </li>
+                            <li>
+                                Author <input type="text" value="Testo" id="author" title="Book Author">
+                            </li>
+                            <li>
+                                Description <input type="text" value="A Good Test" id="description"
+                                                   title="Book Description">
+                            </li>
+                            <li>
+                                Number of Pages <input type="number" value="1" id="length" title="Number of Pages">
+                            </li>
+                        </ul>
+                    </div>
+                    <button id="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+    <script src="js/nav.js"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'></script>
+    <script src='js/main.js'></script>
+    <script src='js/dbscheme.js'></script>
+    <script src='js/dbretrieval.js'></script>
+    <script src='js/dataupload.js'></script>
+    <script src='js/readinglog.js'></script>
+
+    <script>
+        connect();
+        $("#submit").click(function () {
+            let bookInput = [{
+                'title': $("#title").val(),
+                'author': $("#author").val(),
+                'description': $("#description").val(),
+                'length': $("#length").val()
+            }];
+            UploadData({'JSONData': bookInput, 'tab': 'bookTable'});
+        });
+    </script>
+
+
 </body>
-<script>
-</script>
+
 </html>
