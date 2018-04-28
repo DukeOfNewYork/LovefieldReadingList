@@ -26,7 +26,7 @@ let readingLogCurrentPage = function readingLogCurrentPage() {
                 history.append(row);
             }
         }
-        $('#history').html(history);
+        $('#history-highlights').html(history);
     })
 };
 
