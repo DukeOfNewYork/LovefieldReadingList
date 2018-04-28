@@ -6,6 +6,7 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src='../js/main.js'></script>
     <script src='../js/dbscheme.js'></script>
     <script src='../js/dbretrieval.js'></script>
@@ -15,16 +16,45 @@
 <body>
 <div id='display'></div>
 <div id='history'></div>
+<canvas id="myChart"></canvas>
 
 </body>
-<script>$(function () {
-    connect()
-        .then(function () {
-            retreieveBooks();
-            getReadingList();
-            displayReadingLogs();
-        });
-})
+<script>
+    $(function () {
+        let graphLabels = [],
+            graphData = [];
+        connect()
+            .then(function () {
+                retreieveBooks();
+                getReadingList();
+                displayReadingLogs().then(function (htmlData) {
+                    $('#history').html(htmlData.history);
+                    graphLabels = htmlData.titles;
+                    graphData = htmlData.reading;
+
+                    let ctx = document.getElementById('myChart').getContext('2d');
+                    let chart = new Chart(ctx, {
+
+                        // The type of chart we want to create
+                        type: 'bar',
+
+                        // The data for our dataset
+                        data: {
+                            labels: graphLabels,
+                            datasets: [{
+                                label: "Current Progress",
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: graphData,
+                            }]
+                        },
+
+                        // Configuration options go here
+                        options: {}
+                    });
+                })
+            })
+    });
 
 </script>
 </html>

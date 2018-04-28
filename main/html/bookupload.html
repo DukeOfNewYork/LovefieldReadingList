@@ -4,6 +4,11 @@
     <meta charset="utf-8"/>
     <title>Logging books using Lovefield</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='../js/main.js'></script>
+    <script src='../js/dbscheme.js'></script>
+    <script src='../js/dbretrieval.js'></script>
+    <script src='../js/dataupload.js'></script>
+    <script src='../js/readinglog.js'></script>
 
 </head>
 <body>
@@ -29,12 +34,7 @@
 <script>$(function () {
     $.when(
         $.getScript('https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'),
-        $.getScript('../js/main.js'),
-        $.getScript('../js/dbscheme.js'),
-        $.getScript('../js/dbretrieval.js'),
-        $.getScript('../js/dataupload.js')
     ).then(function () {
-            createSchemes();
             connect();
             $("#submit").click(function () {
 

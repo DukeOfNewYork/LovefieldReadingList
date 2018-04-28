@@ -32,14 +32,14 @@
 
 </body>
 <script>$(function () {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker().datepicker("setDate", new Date());
     connect()
         .then(function () {
             retreieveBooks();
             getReadingList();
             readingLogCurrentPage();
         });
-    $("#submit").click(function () {
+    $("#submit-reading").click(function () {
         _readingListScheme.numberOfReadingLogs += 1;
         let bookInput = {
             'id': _readingListScheme.numberOfReadingLogs,
