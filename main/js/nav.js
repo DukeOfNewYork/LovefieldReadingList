@@ -9,3 +9,7 @@ $("#leftside-navigation .sub-menu > a").click(function (e) {
 });
 
 $("#leftside-navigation .sub-menu > a").trigger("click");
+
+let scrollTo = function (idDestination) {
+    document.getElementById(idDestination).scrollIntoView({behavior: 'smooth'})
+};

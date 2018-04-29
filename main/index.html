@@ -21,16 +21,19 @@
                                 class="fab fa-github"></i><span>GitHub Project Page</span></a>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:void(0);"></i><span>Reading Logs</span>
+                        <a href="javascript:void(0);"><span>Reading Logs</span>
                             <i id="arrow" class="fas fa-arrow-right arrow-up"></i>
                         </a>
                         <ul>
-                            <li><a href="#add_a_book"><i class="fas fa-book"></i> Add a book to your collection</a>
+                            <li><a href="javascript:scrollTo('add_a_book');"><i class="fas fa-book"></i> Add a book to
+                                your collection</a>
                             </li>
-                            <li><a href="#add_a_reading_event"><i class="fas fa-pencil-alt"></i> Log your most recent
+                            <li><a href="javascript:scrollTo('add_a_reading_event');"><i class="fas fa-pencil-alt"></i>
+                                Log your most recent
                                 reading experience</a>
                             </li>
-                            <li><a href="#entire_reading_history"><i class="fab fa-readme"></i> View entire reading
+                            <li><a href="javascript:scrollTo('entire_reading_history');"><i class="fab fa-readme"></i>
+                                View entire reading
                                 history</a>
                             </li>
                         </ul>
@@ -49,11 +52,11 @@
         </div>
         <div class="rows">
             <div class="row row-dark" id="add_a_book">
-                <div class="row-container">
+                <div class="row-container center">
                     <h2>
                         Add a Book
                     </h2>
-                    <div id="inputs" class="center">
+                    <div id="inputs">
                         <ul>
                             <li>
                                 Title <input type="text" value="Test" id="title" title="Book Title">
@@ -69,16 +72,16 @@
                                 Number of Pages <input type="number" value="1" id="length" title="Number of Pages">
                             </li>
                         </ul>
+                        <button id="submit">Submit</button>
                     </div>
-                    <button id="submit">Submit</button>
                 </div>
             </div>
             <div class="row row-light" id="add_a_reading_event">
-                <div class="row-container">
+                <div class="row-container center">
                     <h2>
                         Add a reading event
                     </h2>
-                    <div class="center">
+                    <div>
                         <ul>
                             <li>
                                 Title <select id="mySelect"></select>
@@ -90,18 +93,19 @@
                                 Date: <input type="text" id="datepicker">
                             </li>
                         </ul>
+                        <button id="submit-reading">Submit</button>
+                        <div id="history-highlights"></div>
                     </div>
-                    <button id="submit-reading">Submit</button>
-                    <div id="history-highlights" class="center"></div>
+
                 </div>
             </div>
             <div class="row row-dark" id="entire_reading_history">
-                <div class="row-container">
+                <div class="row-container center">
                     <h2>
                         Entire Reading History
                     </h2>
 
-                    <div id="history-all" class="center"></div>
+                    <div id="history-all"></div>
                 </div>
             </div>
         </div>
@@ -138,6 +142,7 @@
                 'length': $("#length").val()
             }];
             UploadData({'JSONData': bookInput, 'tab': 'bookTable'});
+            retreieveBooks();
         });
         $("#submit-reading").click(function () {
             _readingListScheme.numberOfReadingLogs += 1;
@@ -149,6 +154,9 @@
             };
             UploadData({'JSONData': [bookInput], 'tab': 'readingRecordsTable'});
             readingLogCurrentPage();
+            displayReadingLogs().then(function (htmlData) {
+                $('#history-all').html(htmlData.history);
+            });
         });
     </script>
 

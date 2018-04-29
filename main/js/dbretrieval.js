@@ -12,7 +12,7 @@ let retreieveBooks = function retreieveBooks() {
             );
         }
         _readingListScheme.books = returnObj;
-        $('#mySelect').append(_select.html());
+        $('#mySelect').html(_select.html());
     });
 };
 
