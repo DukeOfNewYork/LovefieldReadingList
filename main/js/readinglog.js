@@ -6,7 +6,9 @@ let readingLogCurrentPage = function readingLogCurrentPage() {
             // currentBook = rows[0].bookTitle,
             // currentPage = 0,
             row;
+        console.log(rows);
         bookInformation = bookStats(rows);
+        // console.log(bookInformation);
         // for (let i = 0; i < _readingListScheme.numberOfReadingLogs; i++) {
         //     if (currentBook !== rows[i].bookTitle) {
         //         currentBook = rows[i].bookTitle;

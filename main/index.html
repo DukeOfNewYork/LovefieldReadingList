@@ -8,7 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <link rel='stylesheet prefetch'
           href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
-
 </head>
 <body>
 <div class="grid-container">
@@ -106,6 +105,23 @@
                     </h2>
 
                     <div id="history-all"></div>
+
+                </div>
+            </div>
+            <div class="row row-light" id="csv-upload">
+                <div class="row-container center">
+                    <h2>
+                        Upload Backup CSV Here
+                    </h2>
+
+                    <div id="inputs2" class="clearfix">
+                        <input type="file" id="files" name="files[]" multiple />
+                    </div>
+                    <output id="list">
+                    </output>
+                    <table id="contents">
+                    </table>
+
                 </div>
             </div>
         </div>
@@ -116,13 +132,16 @@
     <script src="js/nav.js"></script>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lovefield/2.1.12/lovefield.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.9/jquery.csv.min.js'></script>
     <script src='js/main.js'></script>
     <script src='js/dbscheme.js'></script>
     <script src='js/dbretrieval.js'></script>
     <script src='js/dataupload.js'></script>
     <script src='js/readinglog.js'></script>
+    <script src='js/save-load.js'></script>
 
     <script>
+        $('#files').bind('change', handleFileSelect);
         connect()
             .then(function () {
                 retreieveBooks();
@@ -131,6 +150,9 @@
                 displayReadingLogs().then(function (htmlData) {
                     $('#history-all').html(htmlData.history);
                 });
+                savecsv().then(function (data){
+                    let encodedUri = encodeURI(data);
+                })
             });
 
         $("#datepicker").datepicker().datepicker("setDate", new Date());

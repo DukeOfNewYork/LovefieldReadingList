@@ -1,6 +1,7 @@
 //uploads data to the database, with param.tab for the table
 //param.JSONData needs to be placed inside an array so that it can use map
 let UploadData = function UploadData(param) {
+    console.log(param);
     param.tab = _readingListScheme[param.tab];
 
     let rows = param.JSONData.map(function (obj) {
