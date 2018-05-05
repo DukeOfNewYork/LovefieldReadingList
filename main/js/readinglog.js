@@ -6,7 +6,6 @@ let readingLogCurrentPage = function readingLogCurrentPage() {
             // currentBook = rows[0].bookTitle,
             // currentPage = 0,
             row;
-        console.log(rows);
         bookInformation = bookStats(rows);
         // console.log(bookInformation);
         // for (let i = 0; i < _readingListScheme.numberOfReadingLogs; i++) {
@@ -38,7 +37,7 @@ let displayReadingLogs = function displayReadingLogs() {
         retreieveReadingLogs().then(function (rows) {
             let history = $('<table></table>').addClass('history'),
                 readingLogsDictionary = {},
-                graphData = {'bookTitles': [],'pages':[]},
+                graphData = {'bookTitles': [], 'pages': []},
                 readingLogsStats,
                 currentBook = "",
                 row;
@@ -64,14 +63,15 @@ let displayReadingLogs = function displayReadingLogs() {
 
 
 let bookStats = function bookStats(rows) {
-    if (rows.length === 0){
+    if (rows.length === 0) {
         return
     }
+
     let currentBook = rows[0].bookTitle,
         bookInformation = {},
         currentPage = 0;
 
-    for (let i = 0; i < _readingListScheme.numberOfReadingLogs; i++) {
+    for (let i = 0, length = rows.length; i < length; i++) {
         if (currentBook !== rows[i].bookTitle) {
             currentBook = rows[i].bookTitle;
         }

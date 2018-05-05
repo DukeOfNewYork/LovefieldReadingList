@@ -1,5 +1,5 @@
 function createSchemes() {
-    _readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 4);
+    _readingListScheme.schemaBuilder = lf.schema.create('SDGReading', 1);
 
     _readingListScheme.schemaBuilder.createTable('readingRecordsTable').
     addColumn('id', lf.Type.INTEGER).

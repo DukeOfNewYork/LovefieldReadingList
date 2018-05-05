@@ -141,7 +141,6 @@
     <script src='js/save-load.js'></script>
 
     <script>
-        $('#files').bind('change', handleFileSelect);
         connect()
             .then(function () {
                 retreieveBooks();
@@ -150,9 +149,6 @@
                 displayReadingLogs().then(function (htmlData) {
                     $('#history-all').html(htmlData.history);
                 });
-                savecsv().then(function (data){
-                    let encodedUri = encodeURI(data);
-                })
             });
 
         $("#datepicker").datepicker().datepicker("setDate", new Date());
@@ -180,6 +176,7 @@
                 $('#history-all').html(htmlData.history);
             });
         });
+        $('#files').bind('change', handleFileSelect);
     </script>
 
 

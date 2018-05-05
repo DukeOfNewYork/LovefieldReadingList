@@ -65,7 +65,7 @@ function printTable(file) {
         var data = $.csv.toArrays(csv);
         var html = '';
         let rows = [];
-        let object = [];
+        let loadedLogs = [];
         for(var row in data) {
             html += '<tr>\r\n';
             for(var item in data[row]) {
@@ -75,12 +75,29 @@ function printTable(file) {
             html += '</tr>\r\n';
         }
         for (let i = 0, counts = rows.length / 5 - 1; i < counts; i++){
-        // while (check != undefined){
             check = rows.shift();
-            object.push({'id':parseInt(rows.shift()),'bookTitle':rows.shift(),'currentPage':parseInt(rows.shift()),'dateRead':Date.parse(rows.shift())});
+            loadedLogs.push({'id':parseInt(rows.shift()),'bookTitle':rows.shift(),'currentPage':parseInt(rows.shift()),'dateRead': new Date(rows.shift())});
         }
-        
+        // console.log(loadedLogs);
+        books = bookStats(loadedLogs);
+        for (let book in books){
+            let bookInput = [{
+                'title': books[book].title,
+                'author': 'undefined',
+                'description': 'undefined',
+                'length': 0
+            }];
+            UploadData({'JSONData': bookInput, 'tab': 'bookTable'});
+        }
+        for (let log in loadedLogs){
+            UploadData({'JSONData': [loadedLogs[log]], 'tab': 'readingRecordsTable'});
+        }
         $('#contents').html(html);
+        readingLogCurrentPage();
+        retreieveBooks();
+        displayReadingLogs().then(function (htmlData) {
+            $('#history-all').html(htmlData.history);
+        });
     };
     reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
 }
