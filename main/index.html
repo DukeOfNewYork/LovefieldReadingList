@@ -108,7 +108,15 @@
 
                 </div>
             </div>
-            <div class="row row-light" id="csv-upload">
+            <div class="row row-light" id="csv-download">
+                <div class="row-container center">
+                    <h2>
+                        Download CSV
+                    </h2>
+
+                </div>
+            </div>
+            <div class="row row-dark" id="csv-upload">
                 <div class="row-container center">
                     <h2>
                         Upload Backup CSV Here
@@ -141,6 +149,7 @@
     <script src='js/save-load.js'></script>
 
     <script>
+
         connect()
             .then(function () {
                 retreieveBooks();

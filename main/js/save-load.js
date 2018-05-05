@@ -9,30 +9,22 @@
 
 let savecsv = function () {
     return new Promise((resolve, reject) => {
-        let csvContent = "data:text/csv;charset=utf-8," + '\r\n';
-        retreieveReadingLogs().then(function (rows) {
-            for (let row in rows) {
-                Object.entries(rows[row]).forEach(function
-                    ([key, value]) {
-                    csvContent += value + ',';
-                });
-                csvContent += '\r\n';
-            }
-            return resolve(csvContent)
-        });
-        // for (let row in rows) {
-        //     let obj = rows[row];
-        //     for (let key in obj) {
-        //         csvContent += obj[key] + ',';
-        //     }
-        //     csvContent += '\r\n';
-        // }
-        // rows.forEach(function(rowArray){
-        //     let row = rowArray.join(",");
-        //     csvContent += row + "\r\n";
-        // });
-        // let encodedUri = encodeURI(csvContent);
-        // window.open(encodedUri);
+            let link, encodedUri, csvContent = "data:text/csv;charset=utf-8," + '\r\n';
+            retreieveReadingLogs().then(function (rows) {
+                for (let row in rows) {
+                    Object.entries(rows[row]).forEach(function
+                        ([key, value]) {
+                        csvContent += value + ',';
+                    });
+                    csvContent += '\r\n';
+                }
+                encodedUri = encodeURI(csvContent);
+                link = document.createElement('a');
+                link.setAttribute('href', encodedUri);
+                link.setAttribute('download', 'CSV-Backup.csv');
+                link.click();
+                return resolve(csvContent)
+            });
     })
 };
 
@@ -58,7 +50,7 @@ let handleFileSelect = function handleFileSelect(evt) {
 function printTable(file) {
     var reader = new FileReader();
     reader.readAsText(file);
-    reader.onload = function(event){
+    reader.onload = function (event) {
         let books = [];
         let check = 1;
         var csv = event.target.result;
@@ -66,21 +58,26 @@ function printTable(file) {
         var html = '';
         let rows = [];
         let loadedLogs = [];
-        for(var row in data) {
+        for (var row in data) {
             html += '<tr>\r\n';
-            for(var item in data[row]) {
+            for (var item in data[row]) {
                 rows.push(data[row][item]);
                 html += '<td>' + data[row][item] + '</td>\r\n';
             }
             html += '</tr>\r\n';
         }
-        for (let i = 0, counts = rows.length / 5 - 1; i < counts; i++){
+        for (let i = 0, counts = rows.length / 5 - 1; i < counts; i++) {
             check = rows.shift();
-            loadedLogs.push({'id':parseInt(rows.shift()),'bookTitle':rows.shift(),'currentPage':parseInt(rows.shift()),'dateRead': new Date(rows.shift())});
+            loadedLogs.push({
+                'id': parseInt(rows.shift()),
+                'bookTitle': rows.shift(),
+                'currentPage': parseInt(rows.shift()),
+                'dateRead': new Date(rows.shift())
+            });
         }
         // console.log(loadedLogs);
         books = bookStats(loadedLogs);
-        for (let book in books){
+        for (let book in books) {
             let bookInput = [{
                 'title': books[book].title,
                 'author': 'undefined',
@@ -89,7 +86,7 @@ function printTable(file) {
             }];
             UploadData({'JSONData': bookInput, 'tab': 'bookTable'});
         }
-        for (let log in loadedLogs){
+        for (let log in loadedLogs) {
             UploadData({'JSONData': [loadedLogs[log]], 'tab': 'readingRecordsTable'});
         }
         $('#contents').html(html);
@@ -99,5 +96,7 @@ function printTable(file) {
             $('#history-all').html(htmlData.history);
         });
     };
-    reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
+    reader.onerror = function () {
+        alert('Unable to read ' + file.fileName);
+    };
 }
