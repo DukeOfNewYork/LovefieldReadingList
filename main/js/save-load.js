@@ -1,12 +1,3 @@
-// const rows = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
-// let csvContent = "data:text/csv;charset=utf-8,";
-// rows.forEach(function(rowArray){
-//     let row = rowArray.join(",");
-//     csvContent += row + "\r\n";
-// });
-// var encodedUri = encodeURI(csvContent);
-// window.open(encodedUri);
-
 let savecsv = function () {
     return new Promise((resolve, reject) => {
             let link, encodedUri, csvContent = "data:text/csv;charset=utf-8," + '\r\n';
@@ -28,9 +19,6 @@ let savecsv = function () {
     })
 };
 
-let loadCSV = function (csv) {
-
-};
 
 let handleFileSelect = function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
